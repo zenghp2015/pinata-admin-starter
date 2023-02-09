@@ -43,7 +43,6 @@ const getMenuList = (list: MenuRoute[], basePath?: string): ListItemType[] => {
 };
 
 const menuIcon = (item: ListItemType) => {
-  console.log(item.icon);
   if (typeof item.icon === "string") return <t-icon name={item.icon} />;
   const RenderIcon = item.icon;
   return RenderIcon;
@@ -53,15 +52,25 @@ const menuList = computed(() => {
   const { navData } = props;
   return getMenuList(navData);
 });
+
+const getPath = (item: ListItemType) => {
+  // if (active.value.startsWith(item.path)) {
+  //   return active.value;
+  // }
+  return item.meta?.single ? item.redirect : item.path;
+};
+// console.table(menuList.value);
 </script>
 
 <template>
   <div>
     <template v-for="item in menuList" :key="item.path">
-      <template v-if="!item.children || !item.children.length">
-        <t-menu-item :name="item.path" :value="item.path">
+      <template
+        v-if="!item.children || !item.children.length || item.meta?.single"
+      >
+        <t-menu-item :name="item.path" :value="getPath(item)" :to="item.path">
           <template #icon>
-            <component :is="menuIcon(item)"></component>
+            <component :is="menuIcon(item)" class="t-icon"></component>
           </template>
           {{ item.title }}
         </t-menu-item>
@@ -73,7 +82,7 @@ const menuList = computed(() => {
         :title="item.title"
       >
         <template #icon>
-          <component :is="menuIcon(item)"></component>
+          <component :is="menuIcon(item)" class="t-icon"></component>
         </template>
         <menu-item v-if="item.children" :nav-data="item.children" />
       </t-submenu>

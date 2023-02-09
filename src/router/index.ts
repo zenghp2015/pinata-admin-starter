@@ -9,7 +9,11 @@ import LoginView from "@/pages/login/index.vue";
 import ExceptionView from "@/pages/exception/404.vue";
 import GridView from "@/pages/grid/index.vue";
 
+import userRoutes from "./modules/user";
+
 export * from "./routes";
+
+console.log(userRoutes);
 
 const constantRoutes: RouteRecordRaw[] = [
   {
@@ -36,7 +40,9 @@ const constantRoutes: RouteRecordRaw[] = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...constantRoutes],
+  routes: [...constantRoutes, userRoutes],
 });
+
+console.log(router.getRoutes());
 
 export default router;
