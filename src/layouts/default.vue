@@ -6,6 +6,10 @@ import SideMenu from "./components/menu.vue";
   <div class="pinata-layout">
     <t-layout>
       <t-aside><SideMenu /></t-aside>
+      <t-layout>
+        <t-header>header</t-header>
+        <t-content>content</t-content>
+      </t-layout>
     </t-layout>
   </div>
 </template>
