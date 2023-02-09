@@ -2,7 +2,7 @@ version: '3'
 services:
   pinata:
     container_name: "pinata-admin"
-    image: "node:16.9.0-alpine"
+    image: "pinata:v1"
     volumes:
       - ./:/usr/src/app
     ports:

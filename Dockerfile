@@ -10,6 +10,9 @@ RUN \
 # 工作目录
 WORKDIR /usr/src/app
 
+# 用户
+USER root:root
+
 # 暴露端口
 EXPOSE 5200
 EXPOSE 5173
