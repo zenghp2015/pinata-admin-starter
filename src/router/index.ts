@@ -13,7 +13,18 @@ import userRoutes from "./modules/user";
 
 export * from "./routes";
 
-console.log(userRoutes);
+// TOOD:
+export const getActive = (maxLevel = 3): string => {
+  const route = useRoute();
+  if (!route.path) {
+    return "";
+  }
+  return route.path
+    .split("/")
+    .filter((_item: string, index: number) => index <= maxLevel && index > 0)
+    .map((item: string) => `/${item}`)
+    .join("");
+};
 
 const constantRoutes: RouteRecordRaw[] = [
   {

@@ -79,13 +79,25 @@ export default {
       path: "result",
       name: "result",
       meta: { title: "结果" },
-      children: [],
+      children: [
+        {
+          path: "base",
+          name: "template-result-base",
+          meta: { title: "基础列表" },
+        },
+      ],
     },
     {
       path: "exception",
       name: "exception",
       meta: { title: "异常页" },
-      children: [],
+      children: [
+        {
+          path: "base",
+          name: "template-exception-base",
+          meta: { title: "基础列表" },
+        },
+      ],
     },
     {
       path: "user",

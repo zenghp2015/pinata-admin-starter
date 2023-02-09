@@ -1,26 +1,14 @@
 <script setup lang="ts">
 import MenuItem from "./menu-item.vue";
-import { syncRoutes } from "@/router";
+import { syncRoutes, getActive } from "@/router";
 
 const sideMenu: any = computed(() => {
   const newMenuRouters = syncRoutes;
   return newMenuRouters;
 });
-const getActive = (maxLevel = 3): string => {
-  const route = useRoute();
-  if (!route.path) {
-    return "";
-  }
-  return route.path
-    .split("/")
-    .filter((_item: string, index: number) => index <= maxLevel && index > 0)
-    .map((item: string) => `/${item}`)
-    .join("");
-};
 
-const active = computed(() => getActive(2));
-
-console.log(getActive());
+const active = computed(() => getActive());
+// console.log("menu", active.value);
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup lang="tsx">
 import type { PropType } from "vue";
+import { getActive } from "@/router";
 export interface MenuRoute {
   path: string;
   title?: string;
@@ -21,6 +22,9 @@ const props = defineProps({
     default: () => [],
   },
 });
+
+const active = computed(() => getActive());
+// console.log("menuItem", active.value);
 
 const getMenuList = (list: MenuRoute[], basePath?: string): ListItemType[] => {
   if (!list) return [];
@@ -54,9 +58,12 @@ const menuList = computed(() => {
 });
 
 const getPath = (item: ListItemType) => {
-  // if (active.value.startsWith(item.path)) {
-  //   return active.value;
-  // }
+  // console.log("getPath", item);
+  // console.log("getPath", item.path);
+  // console.log("getPath", active.value);
+  if (active.value.startsWith(item.path)) {
+    return active.value;
+  }
   return item.meta?.single ? item.redirect : item.path;
 };
 // console.table(menuList.value);
