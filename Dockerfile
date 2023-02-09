@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:16.9.0-alpine
 
 # 运行命令
 RUN \
@@ -11,4 +11,5 @@ RUN \
 WORKDIR /usr/src/app
 
 # 暴露端口
-EXPOSE 7001
+EXPOSE 5200
+EXPOSE 5173
