@@ -1,7 +1,7 @@
 export default {
   path: "/template",
   name: "template",
-  meta: { title: "页面模板", icon: "code" },
+  meta: { title: "页面模板", icon: "code", orderNo: 3 },
   redirect: "/template/list",
   children: [
     {
@@ -88,7 +88,7 @@ export default {
         {
           path: "404",
           name: "template-result-404",
-          meta: { title: "404 Not Found" },
+          meta: { title: "失败页" },
           component: () => import("@/pages/template/result/404.vue"),
         },
       ],

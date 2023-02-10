@@ -21,6 +21,9 @@ const getPath = (item: ListItemType) => {
 };
 const getMenuList = (list: MenuRoute[], basePath?: string): ListItemType[] => {
   if (!list) return [];
+  list.sort((a, b) => {
+    return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
+  });
   return list
     .map((item) => {
       const path = basePath && !item.path.includes(basePath) ? `${basePath}/${item.path}` : item.path;

@@ -2,7 +2,7 @@ export default [
   {
     path: "/dashboard",
     name: "dashboard",
-    meta: { title: "仪表盘", icon: "dashboard" },
+    meta: { title: "仪表盘", icon: "dashboard", orderNo: 0 },
     component: () => import("@/layouts/default.vue"),
     redirect: "/dashboard/workplace",
     children: [
@@ -23,7 +23,7 @@ export default [
   {
     path: "/visualization",
     name: "visualization",
-    meta: { title: "数据可视化", icon: "chart-bar" },
+    meta: { title: "数据可视化", icon: "chart-bar", orderNo: 1 },
     redirect: "/visualization/data-analysis",
     children: [
       {

@@ -25,7 +25,9 @@ router.beforeEach(async (to, from) => {
         const redirect = decodeURIComponent((from.query.redirect || to.path) as string);
         return to.path === redirect ? { ...to, replace: true } : { path: redirect };
       } catch (err) {
+        // TODO: 退登
         console.error("pinata-admin-starter错误拦截:", err);
+        return { path: "/login" };
       }
     }
   } else {
