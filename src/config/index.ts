@@ -18,3 +18,7 @@ export const initConfig = () => {
     configStore.config[modKey] = mod;
   });
 };
+
+export default {
+  install: initConfig,
+};

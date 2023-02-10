@@ -22,4 +22,8 @@ import SideMenu from "./components/menu.vue";
   width: 100vw;
   height: 100vh;
 }
+
+.t-layout__sider {
+  width: fit-content;
+}
 </style>
