@@ -5,6 +5,7 @@ import ExceptionView from "@/pages/exception/404.vue";
 import GridView from "@/pages/grid/index.vue";
 
 import { useConfigStore } from "@/store";
+
 const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/login",
@@ -22,6 +23,7 @@ const constantRoutes: RouteRecordRaw[] = [
     redirect: "/dashboard/workplace",
   },
   {
+    // TODO: 动态路由
     path: "/:pathMatch(.*)*",
     name: "NotFound",
     component: ExceptionView,

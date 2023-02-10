@@ -85,6 +85,12 @@ export default {
           name: "template-result-base",
           meta: { title: "基础列表" },
         },
+        {
+          path: "404",
+          name: "template-result-404",
+          meta: { title: "404 Not Found" },
+          component: () => import("@/pages/template/result/404.vue"),
+        },
       ],
     },
     {
