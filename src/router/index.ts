@@ -13,7 +13,7 @@ import userRoutes from "./modules/user";
 
 export * from "./routes";
 
-// TOOD:
+// TOOD: 临时存放
 export const getActive = (maxLevel = 3): string => {
   const route = useRoute();
   if (!route.path) {
@@ -53,7 +53,5 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [...constantRoutes, userRoutes],
 });
-
-console.log(router.getRoutes());
 
 export default router;
