@@ -1,10 +1,10 @@
-import Layout from "@/layouts/default.vue";
+// import Layout from "@/layouts/default.vue";
 export default {
   path: "/users",
   name: "users",
   meta: { title: "用户管理", single: true },
   redirect: "/users/base",
-  component: Layout,
+  // component: Layout,
   children: [
     {
       path: "base",

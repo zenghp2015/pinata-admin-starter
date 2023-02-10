@@ -1,25 +1,22 @@
 <script setup lang="ts">
 import MenuItem from "./menu-item.vue";
-import { syncRoutes, getActive } from "@/router";
+import { usePermissionStore } from "@/store";
 
+const permissionStore = usePermissionStore();
+const active = computed(() => permissionStore.getActive());
 const sideMenu: any = computed(() => {
-  const newMenuRouters = syncRoutes;
+  const { routes } = permissionStore;
+  const newMenuRouters = routes;
+  // TODO: 多种数据方式
   return newMenuRouters;
 });
-
-const active = computed(() => getActive());
-// console.log("menu", active.value);
 </script>
 
 <template>
   <div class="sidebar-container">
     <t-menu theme="light" :value="active">
       <template #logo>
-        <img
-          height="28"
-          src="https://tdesign.gtimg.com/site/baseLogo-light.png"
-          alt="logo"
-        />
+        <img height="28" src="https://tdesign.gtimg.com/site/baseLogo-light.png" alt="logo" />
       </template>
       <MenuItem :nav-data="sideMenu" />
       <template #operations>123333</template>

@@ -34,33 +34,11 @@ const layoutUpdatedEvent = (newLayout) => {
 };
 
 const containerResizedEvent = (i, newH, newW, newHPx, newWPx) => {
-  console.log(
-    "CONTAINER RESIZED i=" +
-      i +
-      ", H=" +
-      newH +
-      ", W=" +
-      newW +
-      ", H(px)=" +
-      newHPx +
-      ", W(px)=" +
-      newWPx
-  );
+  console.log("CONTAINER RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
 };
 
 const resizeEvent = (i, newH, newW, newHPx, newWPx) => {
-  console.log(
-    "RESIZE i=" +
-      i +
-      ", H=" +
-      newH +
-      ", W=" +
-      newW +
-      ", H(px)=" +
-      newHPx +
-      ", W(px)=" +
-      newWPx
-  );
+  console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
 };
 </script>
 <template>
@@ -117,12 +95,8 @@ const resizeEvent = (i, newH, newW, newHPx, newWPx) => {
       </grid-item>
     </grid-layout>
     <div style="display: flex">
-      <pre
-        style="background: green; flex: 1"
-      ><code>{{ state.data.layout }}</code></pre>
-      <pre
-        style="background: red; flex: 1"
-      ><code>{{ state.data.layout2 }}</code></pre>
+      <pre style="background: green; flex: 1"><code>{{ state.data.layout }}</code></pre>
+      <pre style="background: red; flex: 1"><code>{{ state.data.layout2 }}</code></pre>
     </div>
   </div>
 </template>
