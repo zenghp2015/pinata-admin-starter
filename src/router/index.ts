@@ -1,39 +1,10 @@
 import { type Router, type RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 
-import Layout from "@/layouts/default.vue";
 import LoginView from "@/pages/login/index.vue";
 import ExceptionView from "@/pages/exception/404.vue";
 import GridView from "@/pages/grid/index.vue";
 
-import store, { useConfigStore, usePermissionStore } from "@/store";
-
-export const initModuleRoutes = () => {
-  const permissionStore = usePermissionStore(store);
-  const modules = import.meta.glob(["@/router/modules/*.ts"], {
-    eager: true,
-    import: "default",
-  });
-  Object.keys(modules).forEach((key) => {
-    const mod = modules[key];
-    if (!mod) return;
-    const routesAry = Array.isArray(mod) ? [...mod] : [mod];
-    permissionStore.routes.push(...routesAry);
-  });
-};
-
-// TOOD: 临时存放
-export const getActive = (maxLevel = 3): string => {
-  const route = useRoute();
-  if (!route.path) {
-    return "";
-  }
-  return route.path
-    .split("/")
-    .filter((_item: string, index: number) => index <= maxLevel && index > 0)
-    .map((item: string) => `/${item}`)
-    .join("");
-};
-
+import { useConfigStore } from "@/store";
 const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/login",
@@ -48,7 +19,7 @@ const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "Root",
-    component: Layout,
+    redirect: "/dashboard/workplace",
   },
   {
     path: "/:pathMatch(.*)*",

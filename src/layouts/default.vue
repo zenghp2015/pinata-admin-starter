@@ -8,7 +8,9 @@ import SideMenu from "./components/menu.vue";
       <t-aside><SideMenu /></t-aside>
       <t-layout>
         <t-header>header</t-header>
-        <t-content>content</t-content>
+        <t-content>
+          <RouterView />
+        </t-content>
       </t-layout>
     </t-layout>
   </div>

@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import { initConfig } from "./config";
-import { initModuleRoutes } from "./router";
+// import { initModuleRoutes } from "./router";
 
 import tdesign from "tdesign-vue-next";
 import store from "./store";
@@ -14,7 +14,7 @@ import "./permission";
 
 const initApp = () => {
   initConfig();
-  initModuleRoutes();
+  // initModuleRoutes();
 };
 
 const loadApp = async () => {

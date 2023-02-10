@@ -1,7 +1,7 @@
 export default {
   path: "/template",
   name: "template",
-  meta: { title: "页面模板", icon: "logo-apple-filled" },
+  meta: { title: "页面模板", icon: "code" },
   redirect: "/template/list",
   children: [
     {
@@ -34,7 +34,7 @@ export default {
     {
       path: "form",
       name: "form",
-      meta: { title: "表单页" },
+      meta: { title: "表单页", icon: "edit-1" },
       children: [
         {
           path: "base",
@@ -51,7 +51,7 @@ export default {
     {
       path: "profile",
       name: "profile",
-      meta: { title: "详情页" },
+      meta: { title: "详情页", icon: "layers" },
       children: [
         {
           path: "base",
@@ -78,7 +78,7 @@ export default {
     {
       path: "result",
       name: "result",
-      meta: { title: "结果" },
+      meta: { title: "结果", icon: "check-circle" },
       children: [
         {
           path: "base",
@@ -88,21 +88,9 @@ export default {
       ],
     },
     {
-      path: "exception",
-      name: "exception",
-      meta: { title: "异常页" },
-      children: [
-        {
-          path: "base",
-          name: "template-exception-base",
-          meta: { title: "基础列表" },
-        },
-      ],
-    },
-    {
       path: "user",
       name: "user",
-      meta: { title: "个人页" },
+      meta: { title: "个人页", icon: "user-circle" },
       children: [
         {
           path: "index",
@@ -114,7 +102,7 @@ export default {
     {
       path: "login",
       name: "login",
-      meta: { title: "登录页" },
+      meta: { title: "登录页", icon: "login" },
       children: [
         {
           path: "index",
