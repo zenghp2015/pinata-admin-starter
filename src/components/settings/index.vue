@@ -14,6 +14,7 @@ const layoutOptions = [
   { type: "top", text: "顶部导航布局", thumbnail: getThumbnailUrl("top") },
   { type: "mix", text: "组合导航布局", thumbnail: getThumbnailUrl("mix") },
 ];
+const colorOptions = ["#0052D9", "#0594FA", "#00A870", "#EBB105", "#ED7B2F", "#E34D59", "#ED49B4", "#834EC2"];
 const formData = computed(() => configStore.config.theme);
 function getThumbnailUrl(name: string) {
   return new URL(`../../assets/images/setting-layout-${name}.png`, import.meta.url).href;
@@ -33,6 +34,16 @@ function getThumbnailUrl(name: string) {
         </div>
       </t-radio-group>
       <div class="setting-group-title">主题色</div>
+      <t-radio-group v-model="formData.brandTheme">
+        <div v-for="(item, index) in colorOptions" :key="index" class="setting-layout-radio">
+          <t-radio-button :key="index" :value="item" class="setting-layout-color-group">
+            <!-- <color-container :value="item" /> -->
+            <div class="color-container">{{ item }}</div>
+          </t-radio-button>
+          <!-- <p :style="{ textAlign: 'center', marginTop: '8px' }">{{ item }}</p> -->
+        </div>
+      </t-radio-group>
+
       <div class="setting-group-title">导航布局</div>
       <t-radio-group v-model="formData.layout">
         <div v-for="(item, index) in layoutOptions" :key="index" class="setting-layout-radio">
@@ -70,6 +81,16 @@ function getThumbnailUrl(name: string) {
 </template>
 
 <style lang="less" scoped>
+// TODO:
+.color-container {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--td-radius-circle);
+  display: inline-block;
+  overflow: hidden;
+  background-color: gold;
+}
+
 .settings-container {
   display: flex;
   flex-direction: column;
@@ -119,6 +140,19 @@ function getThumbnailUrl(name: string) {
   }
   :deep(.t-form__controls-content) {
     justify-content: end;
+  }
+}
+
+.setting-layout-color-group {
+  // display: inline-flex;
+  // justify-content: center;
+  // align-items: center;
+  border-radius: 50% !important;
+  padding: 6px !important;
+  border: 2px solid transparent !important;
+
+  > .t-radio-button__label {
+    display: inline-flex;
   }
 }
 
