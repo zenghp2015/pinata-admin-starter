@@ -1,20 +1,37 @@
 <script setup lang="ts">
-import { useConfigStore } from "@/store";
+import MenuItem from "./menu-item.vue";
+import { useConfigStore, usePermissionStore } from "@/store";
 const configStore = useConfigStore();
+const permissionStore = usePermissionStore();
+
 const changeCollapsed = () => {
   const { theme } = configStore.config;
   theme.isSidebarCompact = !theme.isSidebarCompact;
 };
+
+//
+const headerMenu: any = computed(() => {
+  const { theme } = configStore.config;
+  const { routes } = permissionStore;
+  if (theme.layout === "mix") {
+  }
+  return routes;
+});
+
+console.log(headerMenu.value);
 </script>
 
 <template>
-  <t-head-menu>
+  <t-head-menu expand-type="popup">
     <template #logo>
       <div class="header-operate-left">
         <t-button theme="default" shape="square" variant="text" @click="changeCollapsed">
           <t-icon class="collapsed-icon" name="view-list" />
         </t-button>
       </div>
+    </template>
+    <template #default>
+      <!-- <MenuItem class="header-menu" :nav-data="headerMenu" /> -->
     </template>
     <template #operations>
       <div class="operations-container">
@@ -28,7 +45,7 @@ const changeCollapsed = () => {
             <t-icon name="help-circle" />
           </t-button>
         </t-tooltip>
-        <t-tooltip content="系统设置">
+        <t-tooltip content="主题配置">
           <t-button theme="default" variant="text" shape="square">
             <t-icon name="setting" />
           </t-button>
@@ -58,6 +75,15 @@ const changeCollapsed = () => {
 </template>
 
 <style lang="less" scoped>
+.header-menu {
+  flex: 1 1 1;
+  display: inline-flex;
+
+  :deep(.t-menu__item) {
+    min-width: unset;
+  }
+}
+
 .header-operate-left {
   display: flex;
   align-items: normal;

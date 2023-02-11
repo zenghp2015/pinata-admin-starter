@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import type { PropType } from "vue";
+import type { MenuRoute } from "@/types";
+
 import { version } from "../../../package.json";
 import { usePermissionStore, useConfigStore } from "@/store";
 import MenuItem from "./menu-item.vue";
@@ -6,17 +9,22 @@ import MenuItem from "./menu-item.vue";
 import AssetLogo from "@/assets/images/logo.svg?component";
 import AssetLogoFull from "@/assets/images/logo-full.svg?component";
 
+defineProps({
+  menu: {
+    type: Array as PropType<MenuRoute[]>,
+    default: () => [],
+  },
+  layout: {
+    type: String,
+    default: "",
+  },
+});
+
 const permissionStore = usePermissionStore();
 const { config } = useConfigStore();
 
 const collapsed = computed(() => config.theme.isSidebarCompact);
 const active = computed(() => permissionStore.getActive());
-const sideMenu: any = computed(() => {
-  const { routes } = permissionStore;
-  const newMenuRouters = routes;
-  // TODO: 多种数据方式
-  return newMenuRouters;
-});
 const versionContent = computed(() => {
   return !collapsed.value ? `${config.global.title} ${version}` : version;
 });
@@ -47,7 +55,7 @@ onMounted(() => {
           <component :is="getLogo()" :class="`side-nav-${collapsed ? 'logo' : 'full-logo'}`" />
         </div>
       </template>
-      <MenuItem :nav-data="sideMenu" />
+      <MenuItem :nav-data="menu" />
       <template #operations>
         <div class="version-container">{{ versionContent }}</div>
       </template>

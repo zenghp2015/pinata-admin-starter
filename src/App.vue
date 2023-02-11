@@ -5,5 +5,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <RouterView class="light" />
+  <t-config-provider class="config-provider">
+    <RouterView class="light" />
+  </t-config-provider>
 </template>
