@@ -4,6 +4,11 @@ export default {
   splitMenu: false, // 分割菜单，mix 有效
   minPoint: 998,
   isSidebarCompact: false,
+  isSidebarFixed: false,
+  showHeader: false,
+  showBreadcrumb: false,
+  showFooter: false,
+  isUseTabsRouter: false,
 
   copyright: "Copyright @ 2021-2023 Tencent. All Rights Reserved",
 };

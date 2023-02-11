@@ -4,16 +4,17 @@ import lightSvg from "@/assets/images/setting-theme-light.svg?component";
 import darkSvg from "@/assets/images/setting-theme-dark.svg?component";
 import autoSvg from "@/assets/images/setting-theme-mix.svg?component";
 const configStore = useConfigStore();
-
 const modeOptions = [
   { type: "light", text: "明亮", component: markRaw(lightSvg) },
   { type: "dark", text: "暗黑", component: markRaw(darkSvg) },
   { type: "auto", text: "跟随系统", component: markRaw(autoSvg) },
 ];
-const layoutOptions = ["side", "top", "mix"];
-
+const layoutOptions = [
+  { type: "side", text: "侧边导航布局", thumbnail: getThumbnailUrl("side") },
+  { type: "top", text: "顶部导航布局", thumbnail: getThumbnailUrl("top") },
+  { type: "mix", text: "组合导航布局", thumbnail: getThumbnailUrl("mix") },
+];
 const formData = computed(() => configStore.config.theme);
-
 function getThumbnailUrl(name: string) {
   return new URL(`../../assets/images/setting-layout-${name}.png`, import.meta.url).href;
 }
@@ -28,18 +29,38 @@ function getThumbnailUrl(name: string) {
           <t-radio-button :key="index" :value="item.type">
             <component :is="item.component" />
           </t-radio-button>
+          <p :style="{ textAlign: 'center', marginTop: '8px' }">{{ item.text }}</p>
         </div>
       </t-radio-group>
       <div class="setting-group-title">主题色</div>
       <div class="setting-group-title">导航布局</div>
       <t-radio-group v-model="formData.layout">
         <div v-for="(item, index) in layoutOptions" :key="index" class="setting-layout-radio">
-          <t-radio-button :key="index" :value="item">
-            <t-image :src="getThumbnailUrl(item)" fit="cover" />
+          <t-radio-button :key="index" :value="item.type">
+            <t-image :src="item.thumbnail" fit="cover" />
           </t-radio-button>
+          <p :style="{ textAlign: 'center', marginTop: '8px' }">{{ item.text }}</p>
         </div>
       </t-radio-group>
       <div class="setting-group-title">元素开关</div>
+      <t-form-item v-show="formData.layout === 'mix'" label="分割菜单（混合模式下有效）" name="splitMenu">
+        <t-switch v-model="formData.splitMenu" />
+      </t-form-item>
+      <t-form-item v-show="formData.layout === 'mix'" label="固定 Sidebar" name="isSidebarFixed">
+        <t-switch v-model="formData.isSidebarFixed" />
+      </t-form-item>
+      <t-form-item v-show="formData.layout === 'side'" label="显示 Header" name="showHeader">
+        <t-switch v-model="formData.showHeader" />
+      </t-form-item>
+      <t-form-item label="显示 Breadcrumbs" name="showBreadcrumb">
+        <t-switch v-model="formData.showBreadcrumb" />
+      </t-form-item>
+      <t-form-item label="显示 Footer" name="showFooter">
+        <t-switch v-model="formData.showFooter" />
+      </t-form-item>
+      <t-form-item label="开启多标签页" name="isUseTabsRouter">
+        <t-switch v-model="formData.isUseTabsRouter"></t-switch>
+      </t-form-item>
     </t-form>
     <div class="setting-info">
       <p>请复制后手动修改配置文件: /src/config/theme.config.ts</p>
@@ -64,10 +85,15 @@ function getThumbnailUrl(name: string) {
     color: var(--td-text-color-primary);
   }
 
+  :deep(.t-form) {
+    width: 100%;
+    padding: 0 20px;
+  }
+
   :deep(.t-radio-group.t-size-m) {
     min-height: 32px;
     width: 100%;
-    // justify-content: space-between;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -76,7 +102,6 @@ function getThumbnailUrl(name: string) {
   }
 
   .setting-layout-radio {
-    margin-right: 20px;
     :deep(.t-radio-button) {
       display: inline-flex;
       max-height: 78px;
@@ -91,6 +116,9 @@ function getThumbnailUrl(name: string) {
     :deep(.t-is-checked) {
       border: 2px solid var(--td-brand-color) !important;
     }
+  }
+  :deep(.t-form__controls-content) {
+    justify-content: end;
   }
 }
 
