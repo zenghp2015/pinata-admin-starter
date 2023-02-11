@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SideMenu from "./components/menu.vue";
+import Header from "./components/header.vue";
 </script>
 
 <template>
@@ -7,7 +8,7 @@ import SideMenu from "./components/menu.vue";
     <t-layout>
       <t-aside><SideMenu /></t-aside>
       <t-layout>
-        <t-header>header</t-header>
+        <t-header><Header /></t-header>
         <t-content>
           <RouterView />
         </t-content>

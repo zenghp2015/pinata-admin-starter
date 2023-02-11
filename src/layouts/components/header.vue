@@ -1,0 +1,101 @@
+<script setup lang="ts">
+import { useConfigStore } from "@/store";
+const configStore = useConfigStore();
+const changeCollapsed = () => {
+  const { theme } = configStore.config;
+  theme.isSidebarCompact = !theme.isSidebarCompact;
+};
+</script>
+
+<template>
+  <t-head-menu>
+    <template #logo>
+      <div class="header-operate-left">
+        <t-button theme="default" shape="square" variant="text" @click="changeCollapsed">
+          <t-icon class="collapsed-icon" name="view-list" />
+        </t-button>
+      </div>
+    </template>
+    <template #operations>
+      <div class="operations-container">
+        <t-tooltip placement="bottom" content="代码仓库">
+          <t-button theme="default" shape="square" variant="text">
+            <t-icon name="logo-github" />
+          </t-button>
+        </t-tooltip>
+        <t-tooltip placement="bottom" content="帮助文档">
+          <t-button theme="default" shape="square" variant="text">
+            <t-icon name="help-circle" />
+          </t-button>
+        </t-tooltip>
+        <t-tooltip content="系统设置">
+          <t-button theme="default" variant="text" shape="square">
+            <t-icon name="setting" />
+          </t-button>
+        </t-tooltip>
+        <t-dropdown :min-column-width="120" trigger="click">
+          <template #dropdown>
+            <t-dropdown-menu>
+              <t-dropdown-item class="dropdown-container-item">
+                <t-icon name="user-circle"></t-icon>个人中心
+              </t-dropdown-item>
+              <t-dropdown-item class="dropdown-container-item">
+                <t-icon name="poweroff"></t-icon>退出登录
+              </t-dropdown-item>
+            </t-dropdown-menu>
+          </template>
+          <t-button theme="default" variant="text">
+            <template #icon>
+              <t-icon class="header-user-avatar" name="user-circle" />
+            </template>
+            <div class="header-user-account">超级管理员</div>
+            <template #suffix><t-icon name="chevron-down" /></template>
+          </t-button>
+        </t-dropdown>
+      </div>
+    </template>
+  </t-head-menu>
+</template>
+
+<style lang="less" scoped>
+.header-operate-left {
+  display: flex;
+  align-items: normal;
+  line-height: 0;
+  padding-left: var(--td-size-4);
+}
+.operations-container {
+  display: flex;
+  align-items: center;
+  .t-popup__reference {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .t-button {
+    margin-left: var(--td-size-4);
+  }
+}
+.dropdown-container-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  :deep(.t-dropdown__item-text) {
+    display: flex;
+    align-items: center;
+  }
+  .t-icon {
+    font-size: var(--td-comp-size-xxxs);
+    margin-right: var(--td-comp-margin-s);
+  }
+  :deep(.t-dropdown__item) {
+    width: 100%;
+    margin-bottom: 0px;
+  }
+  &:last-child {
+    :deep(.t-dropdown__item) {
+      margin-bottom: 8px;
+    }
+  }
+}
+</style>
