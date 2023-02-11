@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+/// <reference types="tdesign-vue-next/global" />
+/// <reference types="vite-svg-loader" />
 
 declare module "*.vue" {
   import { defineComponent } from "vue";
