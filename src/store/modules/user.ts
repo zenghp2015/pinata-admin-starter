@@ -16,16 +16,18 @@ export const useUserStore = defineStore("user", () => {
     userInfo: {},
   });
 
+  const getUserName = computed(() => state.userInfo?.name);
+
   async function getUserInfo() {
     const mockRemoteUserInfo = async (token: string) => {
       if (token === "main_token") {
         return {
-          name: "td_main",
+          name: "超级管理员",
           roles: ["all"],
         };
       }
       return {
-        name: "td_dev",
+        name: "普通管理员",
         roles: ["UserIndex", "DashboardBase", "login"],
       };
     };
@@ -40,6 +42,7 @@ export const useUserStore = defineStore("user", () => {
 
   return {
     ...toRefs(state),
+    getUserName,
     getUserInfo,
   };
 });

@@ -1,7 +1,8 @@
 export default {
   path: "/template",
   name: "template",
-  meta: { title: "页面模板", icon: "code", orderNo: 3 },
+  // TODO: group 菜单组
+  meta: { title: "页面模板", icon: "code", orderNo: 3, group: "页面模板" },
   redirect: "/template/list",
   children: [
     {

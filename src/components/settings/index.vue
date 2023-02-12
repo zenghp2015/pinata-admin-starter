@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useConfigStore } from "@/store";
+
 import lightSvg from "@/assets/images/setting-theme-light.svg?component";
 import darkSvg from "@/assets/images/setting-theme-dark.svg?component";
 import autoSvg from "@/assets/images/setting-theme-mix.svg?component";
+
 const configStore = useConfigStore();
+const formData = computed(() => configStore.config.theme);
 const modeOptions = [
   { type: "light", text: "明亮", component: markRaw(lightSvg) },
   { type: "dark", text: "暗黑", component: markRaw(darkSvg) },
@@ -14,11 +17,23 @@ const layoutOptions = [
   { type: "top", text: "顶部导航布局", thumbnail: getThumbnailUrl("top") },
   { type: "mix", text: "组合导航布局", thumbnail: getThumbnailUrl("mix") },
 ];
-const colorOptions = ["#0052D9", "#0594FA", "#00A870", "#EBB105", "#ED7B2F", "#E34D59", "#ED49B4", "#834EC2"];
-const formData = computed(() => configStore.config.theme);
 function getThumbnailUrl(name: string) {
   return new URL(`../../assets/images/setting-layout-${name}.png`, import.meta.url).href;
 }
+
+// 主题色
+const colorOptions = ["#0052D9", "#0594FA", "#00A870", "#EBB105", "#ED7B2F", "#E34D59", "#ED49B4", "#834EC2"];
+const panelColor =
+  "conic-gradient(from 90deg at 50% 50%, #FF0000 -19.41deg, #FF0000 18.76deg, #FF8A00 59.32deg, #FFE600 99.87deg, #14FF00 141.65deg, #00A3FF 177.72deg, #0500FF 220.23deg, #AD00FF 260.13deg, #FF00C7 300.69deg, #FF0000 340.59deg, #FF0000 378.76deg)";
+const dynamicColor = computed(() => {
+  const isDynamic = !colorOptions.includes(formData.value.brandTheme);
+  return isDynamic ? formData.value.brandTheme : "";
+});
+const brandThemeStyle = computed(() => {
+  return (value: string) => ({
+    background: colorOptions.includes(value) ? value : panelColor,
+  });
+});
 </script>
 
 <template>
@@ -33,14 +48,18 @@ function getThumbnailUrl(name: string) {
           <p :style="{ textAlign: 'center', marginTop: '8px' }">{{ item.text }}</p>
         </div>
       </t-radio-group>
+
       <div class="setting-group-title">主题色</div>
       <t-radio-group v-model="formData.brandTheme">
         <div v-for="(item, index) in colorOptions" :key="index" class="setting-layout-radio">
           <t-radio-button :key="index" :value="item" class="setting-layout-color-group">
-            <!-- <color-container :value="item" /> -->
-            <div class="color-container">{{ item }}</div>
+            <div class="color-container" :style="brandThemeStyle(item)" />
           </t-radio-button>
-          <!-- <p :style="{ textAlign: 'center', marginTop: '8px' }">{{ item }}</p> -->
+        </div>
+        <div class="setting-layout-radio">
+          <t-radio-button :value="dynamicColor" class="setting-layout-color-group">
+            <div class="color-container" :style="brandThemeStyle(dynamicColor)" />
+          </t-radio-button>
         </div>
       </t-radio-group>
 
@@ -53,6 +72,7 @@ function getThumbnailUrl(name: string) {
           <p :style="{ textAlign: 'center', marginTop: '8px' }">{{ item.text }}</p>
         </div>
       </t-radio-group>
+
       <div class="setting-group-title">元素开关</div>
       <t-form-item v-show="formData.layout === 'mix'" label="分割菜单（混合模式下有效）" name="splitMenu">
         <t-switch v-model="formData.splitMenu" />
@@ -73,6 +93,7 @@ function getThumbnailUrl(name: string) {
         <t-switch v-model="formData.isUseTabsRouter"></t-switch>
       </t-form-item>
     </t-form>
+
     <div class="setting-info">
       <p>请复制后手动修改配置文件: /src/config/theme.config.ts</p>
       <t-button theme="primary" variant="text"> 复制配置项 </t-button>

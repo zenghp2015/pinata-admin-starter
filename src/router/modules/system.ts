@@ -26,7 +26,7 @@ export default {
     {
       path: "theme",
       name: "system-theme",
-      meta: { title: "主题配置" },
+      meta: { title: "页面配置" },
       component: () => import("@/pages/system/theme/index.vue"),
     },
   ],

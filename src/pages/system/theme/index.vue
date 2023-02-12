@@ -10,8 +10,7 @@
 </template>
 <style scoped>
 .card-container {
-  max-width: 420px;
-  min-width: 380px;
+  width: 420px;
   margin: 0 auto;
 }
 </style>

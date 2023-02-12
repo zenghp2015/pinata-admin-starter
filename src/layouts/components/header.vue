@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import MenuItem from "./menu-item.vue";
-import { useConfigStore, usePermissionStore } from "@/store";
+import { useConfigStore, usePermissionStore, useUserStore } from "@/store";
 const configStore = useConfigStore();
 const permissionStore = usePermissionStore();
+const { getUserName } = useUserStore();
 
 const changeCollapsed = () => {
   const { theme } = configStore.config;
@@ -45,12 +46,19 @@ console.log(headerMenu.value);
             <t-icon name="help-circle" />
           </t-button>
         </t-tooltip>
-        <t-tooltip content="主题配置">
+        <t-tooltip content="页面配置">
           <t-button theme="default" variant="text" shape="square">
             <t-icon name="setting" />
           </t-button>
         </t-tooltip>
         <t-dropdown :min-column-width="120" trigger="click">
+          <t-button theme="default" variant="text">
+            <template #icon>
+              <t-icon class="header-user-avatar" name="user-circle" />
+            </template>
+            <div class="header-user-account">{{ getUserName }}</div>
+            <template #suffix><t-icon name="chevron-down" /></template>
+          </t-button>
           <template #dropdown>
             <t-dropdown-menu>
               <t-dropdown-item class="dropdown-container-item">
@@ -61,13 +69,6 @@ console.log(headerMenu.value);
               </t-dropdown-item>
             </t-dropdown-menu>
           </template>
-          <t-button theme="default" variant="text">
-            <template #icon>
-              <t-icon class="header-user-avatar" name="user-circle" />
-            </template>
-            <div class="header-user-account">超级管理员</div>
-            <template #suffix><t-icon name="chevron-down" /></template>
-          </t-button>
         </t-dropdown>
       </div>
     </template>
