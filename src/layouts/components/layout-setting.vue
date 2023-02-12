@@ -8,7 +8,6 @@ const visible = computed(() => configStore.config.global.showSettingPanel);
 const drawerProps = reactive({
   header: "页面配置",
   size: "460px",
-  // footer: false,
   closeBtn: true,
   cancelBtn: "关闭",
   confirmBtn: "复制配置项",
@@ -30,9 +29,6 @@ async function handleCopy() {
     MessagePlugin.closeAll();
     MessagePlugin.success("复制失败");
   }
-  // toClipboard(text)
-  //   .then(() => {})
-  //   .catch(() => {});
 }
 </script>
 <template>
