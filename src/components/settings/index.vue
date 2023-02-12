@@ -5,6 +5,13 @@ import lightSvg from "@/assets/images/setting-theme-light.svg?component";
 import darkSvg from "@/assets/images/setting-theme-dark.svg?component";
 import autoSvg from "@/assets/images/setting-theme-mix.svg?component";
 
+defineProps({
+  showCopy: {
+    type: Boolean,
+    default: true,
+  },
+});
+
 const configStore = useConfigStore();
 const formData = computed(() => configStore.config.theme);
 const modeOptions = [
@@ -94,7 +101,7 @@ const brandThemeStyle = computed(() => {
       </t-form-item>
     </t-form>
 
-    <div class="setting-info">
+    <div class="setting-info" v-show="showCopy">
       <p>请复制后手动修改配置文件: /src/config/theme.config.ts</p>
       <t-button theme="primary" variant="text"> 复制配置项 </t-button>
     </div>

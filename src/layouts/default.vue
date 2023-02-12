@@ -2,6 +2,7 @@
 import LayoutHeader from "./components/header.vue";
 import LayoutContent from "./components/layout-content.vue";
 import LayoutSideMenu from "./components/layout-side.vue";
+import layoutSetting from "./components/layout-setting.vue";
 import { useConfigStore } from "@/store";
 
 const configStore = useConfigStore();
@@ -29,6 +30,7 @@ const hasSide = computed(() => configStore.config.theme.layout === "side");
         </t-layout>
       </t-layout>
     </template>
+    <layoutSetting />
   </div>
 </template>
 

@@ -19,6 +19,19 @@ const headerMenu: any = computed(() => {
   return routes;
 });
 
+function toggleSettingPanel() {
+  // TODO:
+  // const [set, config] = useConfigStore()
+  // set('global.showSettingPanel', true)
+
+  // config('global.showSettingPanel', true)
+  // config('global.showSettingPanel', null)
+
+  // setConfig('global.showSettingPanel', true)
+  // removeConfig('global.showSettingPanel')
+  configStore.config.global.showSettingPanel = true;
+}
+
 console.log(headerMenu.value);
 </script>
 
@@ -47,7 +60,7 @@ console.log(headerMenu.value);
           </t-button>
         </t-tooltip>
         <t-tooltip content="页面配置">
-          <t-button theme="default" variant="text" shape="square">
+          <t-button theme="default" variant="text" shape="square" @click="toggleSettingPanel">
             <t-icon name="setting" />
           </t-button>
         </t-tooltip>

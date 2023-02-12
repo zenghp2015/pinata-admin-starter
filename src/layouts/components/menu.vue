@@ -35,7 +35,7 @@ function getLogo() {
 }
 
 function autoCollapsed() {
-  const isCompact = window.innerWidth <= config.theme.minPoint;
+  const isCompact = window.innerWidth <= config.global.minPoint;
   config.theme.isSidebarCompact = isCompact;
 }
 
