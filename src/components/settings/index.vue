@@ -36,7 +36,12 @@ const brandThemeStyle = computed(() => {
     background: colorOptions.includes(value) ? value : panelColor,
   });
 });
+function changeColor(value: string) {
+  // TODO:
+  formData.value.brandTheme = value;
+}
 
+// 复制
 async function handleCopy() {
   const { toClipboard } = useClipboard();
   const text = JSON.stringify(configStore.config.theme);
@@ -74,9 +79,14 @@ defineExpose({ handleCopy });
           </t-radio-button>
         </div>
         <div class="setting-layout-radio">
-          <t-radio-button :value="dynamicColor" class="setting-layout-color-group">
-            <div class="color-container" :style="brandThemeStyle(dynamicColor)" />
-          </t-radio-button>
+          <t-popup placement="bottom-right" trigger="click">
+            <template #content>
+              <t-color-picker-panel format="HEX" :swatchColors="[]" @change="changeColor" />
+            </template>
+            <t-radio-button :value="dynamicColor" class="setting-layout-color-group">
+              <div class="color-container" :style="brandThemeStyle(dynamicColor)" />
+            </t-radio-button>
+          </t-popup>
         </div>
       </t-radio-group>
 
