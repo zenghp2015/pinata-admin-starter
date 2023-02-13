@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import useClipboard from "vue-clipboard3";
-import { MessagePlugin } from "tdesign-vue-next";
 import { useConfigStore } from "@/store";
 
+const settingsRef = ref();
 const configStore = useConfigStore();
 const visible = computed(() => configStore.config.global.showSettingPanel);
 const drawerProps = reactive({
@@ -16,23 +15,15 @@ const drawerProps = reactive({
 function handleClose() {
   configStore.config.global.showSettingPanel = false;
 }
-
-async function handleCopy() {
-  const { toClipboard } = useClipboard();
-  const text = JSON.stringify(configStore.config.theme);
-
-  try {
-    await toClipboard(text);
-    MessagePlugin.closeAll();
-    MessagePlugin.success("复制成功");
-  } catch {
-    MessagePlugin.closeAll();
-    MessagePlugin.success("复制失败");
-  }
-}
 </script>
 <template>
-  <t-drawer :visible="visible" v-bind="drawerProps" @close="handleClose" @cancel="handleClose" @confirm="handleCopy">
-    <Settings :show-copy="false" />
+  <t-drawer
+    :visible="visible"
+    v-bind="drawerProps"
+    @close="handleClose"
+    @cancel="handleClose"
+    @confirm="() => settingsRef.handleCopy()"
+  >
+    <Settings ref="settingsRef" />
   </t-drawer>
 </template>

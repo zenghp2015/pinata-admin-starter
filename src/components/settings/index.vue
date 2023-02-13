@@ -1,16 +1,11 @@
 <script setup lang="ts">
+import useClipboard from "vue-clipboard3";
+import { MessagePlugin } from "tdesign-vue-next";
 import { useConfigStore } from "@/store";
 
 import lightSvg from "@/assets/images/setting-theme-light.svg?component";
 import darkSvg from "@/assets/images/setting-theme-dark.svg?component";
 import autoSvg from "@/assets/images/setting-theme-mix.svg?component";
-
-defineProps({
-  showCopy: {
-    type: Boolean,
-    default: true,
-  },
-});
 
 const configStore = useConfigStore();
 const formData = computed(() => configStore.config.theme);
@@ -41,6 +36,21 @@ const brandThemeStyle = computed(() => {
     background: colorOptions.includes(value) ? value : panelColor,
   });
 });
+
+async function handleCopy() {
+  const { toClipboard } = useClipboard();
+  const text = JSON.stringify(configStore.config.theme);
+  try {
+    await toClipboard(text);
+    MessagePlugin.closeAll();
+    MessagePlugin.success("复制成功");
+  } catch {
+    MessagePlugin.closeAll();
+    MessagePlugin.success("复制失败");
+  }
+}
+
+defineExpose({ handleCopy });
 </script>
 
 <template>
@@ -100,11 +110,6 @@ const brandThemeStyle = computed(() => {
         <t-switch v-model="formData.isUseTabsRouter"></t-switch>
       </t-form-item>
     </t-form>
-
-    <div class="setting-info" v-show="showCopy">
-      <p>请复制后手动修改配置文件: /src/config/theme.config.ts</p>
-      <t-button theme="primary" variant="text"> 复制配置项 </t-button>
-    </div>
   </div>
 </template>
 
@@ -182,14 +187,5 @@ const brandThemeStyle = computed(() => {
   > .t-radio-button__label {
     display: inline-flex;
   }
-}
-
-.setting-info {
-  line-height: 20px;
-  font-size: 12px;
-  text-align: center;
-  color: var(--td-text-color-placeholder);
-  width: 100%;
-  background: var(--td-bg-color-container);
 }
 </style>
