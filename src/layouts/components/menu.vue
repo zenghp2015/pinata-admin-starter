@@ -21,12 +21,12 @@ defineProps({
 });
 
 const permissionStore = usePermissionStore();
-const { config } = useConfigStore();
+const { config, displayMode } = storeToRefs(useConfigStore());
 
-const collapsed = computed(() => config.theme.isSidebarCompact);
+const collapsed = computed(() => config.value.theme.isSidebarCompact);
 const active = computed(() => permissionStore.getActive());
 const versionContent = computed(() => {
-  return !collapsed.value ? `${config.global.title} ${version}` : version;
+  return !collapsed.value ? `${config.value.global.title} ${version}` : version;
 });
 
 function getLogo() {
@@ -35,8 +35,8 @@ function getLogo() {
 }
 
 function autoCollapsed() {
-  const isCompact = window.innerWidth <= config.global.minPoint;
-  config.theme.isSidebarCompact = isCompact;
+  const isCompact = window.innerWidth <= config.value.global.minPoint;
+  config.value.theme.isSidebarCompact = isCompact;
 }
 
 onMounted(() => {
@@ -49,7 +49,7 @@ onMounted(() => {
 
 <template>
   <div class="sidebar-container">
-    <t-menu theme="light" :value="active" :collapsed="collapsed">
+    <t-menu :theme="displayMode" :value="active" :collapsed="collapsed">
       <template #logo>
         <div class="side-nav-logo-wrapper">
           <component :is="getLogo()" :class="`side-nav-${collapsed ? 'logo' : 'full-logo'}`" />
