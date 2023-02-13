@@ -9,7 +9,13 @@ export const useConfigStore = defineStore("config", () => {
     config: {},
   });
 
+  const displayMode = computed(() => {
+    const { mode } = toRefs(state.config.theme);
+    return mode.value;
+  });
+
   return {
     ...toRefs(state),
+    displayMode,
   };
 });

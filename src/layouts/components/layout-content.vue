@@ -1,5 +1,5 @@
 <template>
-  <t-layout class="layout-content">
+  <t-layout class="layout-content-container">
     <t-content>
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
@@ -23,11 +23,29 @@
   opacity: 0;
 }
 
-.layout {
+.layout-content-container {
   height: calc(100vh - var(--td-comp-size-xxxl));
   overflow-y: scroll;
-  &-content {
-    padding: var(--td-comp-paddingTB-xl) var(--td-comp-paddingLR-xl);
+  padding: var(--td-comp-paddingTB-xl) var(--td-comp-paddingLR-xl);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    background-color: var(--td-scrollbar-color);
   }
 }
+
+// .layout {
+//   height: calc(100vh - var(--td-comp-size-xxxl));
+//   overflow-y: scroll;
+//   &-content {
+//     padding: var(--td-comp-paddingTB-xl) var(--td-comp-paddingLR-xl);
+//   }
+// }
 </style>

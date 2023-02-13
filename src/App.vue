@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-onMounted(() => {
-  // document.documentElement.setAttribute("theme-mode", "dark");
-});
+import { useConfigStore } from "@/store";
+const configStore = useConfigStore();
+const { displayMode } = storeToRefs(configStore);
 </script>
 <template>
-  <t-config-provider class="config-provider">
-    <RouterView class="light" />
+  <t-config-provider :class="[displayMode, 'config-provider']">
+    <RouterView />
   </t-config-provider>
 </template>
