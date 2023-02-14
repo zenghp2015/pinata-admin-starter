@@ -1,12 +1,19 @@
 interface State {
-  config: {
-    [Prop: string]: any;
-  };
+  config: any;
+  theme: any;
+  global: any;
+  permission: any;
+  components: any;
 }
 
 export const useConfigStore = defineStore("config", () => {
   const state = reactive<State>({
     config: {},
+    // 重构配置项
+    theme: {},
+    global: {},
+    permission: {},
+    components: {},
   });
 
   const displayMode = computed(() => {
