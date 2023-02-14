@@ -5,20 +5,15 @@ const getFileName = (file: string, extname = ".ts") => {
   return fielName.replace(extname, "");
 };
 
-export const initConfig = () => {
+export default function () {
   const configStore = useConfigStore(store);
-  const modules = import.meta.glob(["@/config/*.config.ts"], {
+  const modules = import.meta.glob(["@/config/*.store.ts"], {
     eager: true,
     import: "default",
   });
   Object.keys(modules).forEach((key) => {
     const mod = modules[key] || {};
-    const modKey = getFileName(key, ".config.ts");
+    const modKey = getFileName(key, ".store.ts");
     configStore.$patch({ [modKey]: mod });
-    // configStore.config[modKey] = mod;
   });
-};
-
-export default {
-  install: initConfig,
-};
+}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import useClipboard from "vue-clipboard3";
 import { MessagePlugin } from "tdesign-vue-next";
 import { useConfigStore } from "@/store";
+import { copy } from "@/utils/clipboard";
 
 import lightSvg from "@/assets/images/setting-theme-light.svg?component";
 import darkSvg from "@/assets/images/setting-theme-dark.svg?component";
@@ -9,16 +9,19 @@ import autoSvg from "@/assets/images/setting-theme-mix.svg?component";
 
 const configStore = useConfigStore();
 const formData = computed(() => configStore.theme);
+
 const modeOptions = [
   { type: "light", text: "明亮", component: markRaw(lightSvg) },
   { type: "dark", text: "暗黑", component: markRaw(darkSvg) },
   { type: "auto", text: "跟随系统", component: markRaw(autoSvg) },
 ];
+
 const layoutOptions = [
   { type: "side", text: "侧边导航布局", thumbnail: getThumbnailUrl("side") },
   { type: "top", text: "顶部导航布局", thumbnail: getThumbnailUrl("top") },
   { type: "mix", text: "组合导航布局", thumbnail: getThumbnailUrl("mix") },
 ];
+
 function getThumbnailUrl(name: string) {
   return new URL(`../../assets/images/setting-layout-${name}.png`, import.meta.url).href;
 }
@@ -43,15 +46,14 @@ function changeColor(value: string) {
 
 // 复制
 async function handleCopy() {
-  const { toClipboard } = useClipboard();
   const text = JSON.stringify(configStore.theme);
   try {
-    await toClipboard(text);
+    await copy(text);
     MessagePlugin.closeAll();
     MessagePlugin.success("复制成功");
   } catch {
     MessagePlugin.closeAll();
-    MessagePlugin.success("复制失败");
+    MessagePlugin.error("复制失败");
   }
 }
 

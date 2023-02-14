@@ -1,8 +1,9 @@
 interface State {
-  theme: any;
-  global: any;
-  permission: any;
-  components: any;
+  theme?: any;
+  global?: any;
+  permission?: any;
+  components?: any;
+  [key: string]: any;
 }
 
 export const useConfigStore = defineStore("config", () => {
@@ -31,6 +32,11 @@ export const useConfigStore = defineStore("config", () => {
     isDarkMode
       ? document.documentElement.setAttribute("theme-mode", "dark")
       : document.documentElement.removeAttribute("theme-mode");
+  }
+
+  // TODO: 复制配置项
+  function copyConfig(name: any) {
+    console.log(name, state[name]);
   }
 
   return {
