@@ -21,12 +21,12 @@ defineProps({
 });
 
 const permissionStore = usePermissionStore();
-const { config, displayMode } = storeToRefs(useConfigStore());
+const { theme, global, displayMode } = storeToRefs(useConfigStore());
 
-const collapsed = computed(() => config.value.theme.isSidebarCompact);
+const collapsed = computed(() => theme.value.isSidebarCompact);
 const active = computed(() => permissionStore.getActive());
 const versionContent = computed(() => {
-  return !collapsed.value ? `${config.value.global.title} ${version}` : version;
+  return !collapsed.value ? `${global.value.title} ${version}` : version;
 });
 
 function getLogo() {
@@ -35,8 +35,8 @@ function getLogo() {
 }
 
 function autoCollapsed() {
-  const isCompact = window.innerWidth <= config.value.global.minPoint;
-  config.value.theme.isSidebarCompact = isCompact;
+  const isCompact = window.innerWidth <= global.value.minPoint;
+  theme.value.isSidebarCompact = isCompact;
 }
 
 onMounted(() => {

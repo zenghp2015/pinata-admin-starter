@@ -8,7 +8,7 @@ import darkSvg from "@/assets/images/setting-theme-dark.svg?component";
 import autoSvg from "@/assets/images/setting-theme-mix.svg?component";
 
 const configStore = useConfigStore();
-const formData = computed(() => configStore.config.theme);
+const formData = computed(() => configStore.theme);
 const modeOptions = [
   { type: "light", text: "明亮", component: markRaw(lightSvg) },
   { type: "dark", text: "暗黑", component: markRaw(darkSvg) },
@@ -44,7 +44,7 @@ function changeColor(value: string) {
 // 复制
 async function handleCopy() {
   const { toClipboard } = useClipboard();
-  const text = JSON.stringify(configStore.config.theme);
+  const text = JSON.stringify(configStore.theme);
   try {
     await toClipboard(text);
     MessagePlugin.closeAll();

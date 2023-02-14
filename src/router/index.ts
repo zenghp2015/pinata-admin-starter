@@ -1,9 +1,7 @@
 import { type Router, type RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
-
 import LoginView from "@/pages/login/index.vue";
 import ExceptionView from "@/pages/exception/404.vue";
 import GridView from "@/pages/grid/index.vue";
-
 import { useConfigStore } from "@/store";
 
 const constantRoutes: RouteRecordRaw[] = [
@@ -37,9 +35,9 @@ const router = createRouter({
 
 // set title
 router.afterEach((to) => {
-  const { config } = useConfigStore();
+  const { global } = useConfigStore();
   const titleDOM = document.getElementsByTagName("title")[0];
-  const title = to?.meta?.title || config?.global?.title || "pinata-admin-starter";
+  const title = to?.meta?.title || global.title || "pinata-admin-starter";
   if (title && title.length) {
     titleDOM.innerText = title;
   }

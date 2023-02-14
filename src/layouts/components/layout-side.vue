@@ -7,9 +7,9 @@ const route = useRoute();
 const configStore = useConfigStore();
 const permissionStore = usePermissionStore();
 
-const layout = computed(() => configStore.config.theme.layout);
+const layout = computed(() => configStore.theme.layout);
 const sideMenu: any = computed(() => {
-  const { theme } = configStore.config;
+  const { theme } = configStore;
   const { routes } = permissionStore;
   let newMenuRouters: RouteRecordRaw[] = routes;
   if (theme?.layout === "mix" && theme.splitMenu) {
@@ -22,7 +22,7 @@ const sideMenu: any = computed(() => {
   return newMenuRouters;
 });
 
-console.log(layout.value);
+// console.log(layout.value);
 </script>
 <template>
   <SideNav :layout="layout" :menu="sideMenu" />

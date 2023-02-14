@@ -24,12 +24,11 @@ const initModuleRoutes = async () => {
 };
 
 export const usePermissionStore = defineStore("permission", () => {
-  const { config } = useConfigStore();
-
+  const { permission } = useConfigStore();
   const state = reactive<State>({
     routes: [],
     removeRoutes: [], // 远程路由
-    whiteListRouters: config.permission.whiteListRouters || [],
+    whiteListRouters: permission.whiteListRouters || [],
   });
 
   function getActive(maxLevel = 3) {
@@ -55,7 +54,7 @@ export const usePermissionStore = defineStore("permission", () => {
   async function remoteAuth() {}
 
   async function buildRoutes() {
-    config.permission.authentication === "local" ? await localAuth() : await remoteAuth();
+    permission.authentication === "local" ? await localAuth() : await remoteAuth();
     return state.routes;
   }
 

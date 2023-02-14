@@ -1,5 +1,4 @@
 interface State {
-  config: any;
   theme: any;
   global: any;
   permission: any;
@@ -8,8 +7,6 @@ interface State {
 
 export const useConfigStore = defineStore("config", () => {
   const state = reactive<State>({
-    config: {},
-    // 重构配置项
     theme: {},
     global: {},
     permission: {},
@@ -17,7 +14,7 @@ export const useConfigStore = defineStore("config", () => {
   });
 
   const displayMode = computed(() => {
-    const { mode } = toRefs(state.config.theme);
+    const { mode } = toRefs(state.theme);
     let mod;
     if (mode.value === "auto") {
       const media = window.matchMedia("(prefers-color-scheme:dark)");

@@ -6,7 +6,7 @@ import layoutSetting from "./components/layout-setting.vue";
 import { useConfigStore } from "@/store";
 
 const configStore = useConfigStore();
-const hasSide = computed(() => configStore.config.theme.layout === "side");
+const hasSide = computed(() => configStore.theme.layout === "side");
 </script>
 
 <template>

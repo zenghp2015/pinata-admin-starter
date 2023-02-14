@@ -3,7 +3,7 @@ import { useConfigStore } from "@/store";
 
 const settingsRef = ref();
 const configStore = useConfigStore();
-const visible = computed(() => configStore.config.global.showSettingPanel);
+const visible = computed(() => configStore.global.showSettingPanel);
 const drawerProps = reactive({
   header: "页面配置",
   size: "460px",
@@ -13,7 +13,7 @@ const drawerProps = reactive({
 });
 
 function handleClose() {
-  configStore.config.global.showSettingPanel = false;
+  configStore.global.showSettingPanel = false;
 }
 </script>
 <template>

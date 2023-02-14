@@ -6,13 +6,13 @@ const permissionStore = usePermissionStore();
 const { getUserName } = useUserStore();
 
 const changeCollapsed = () => {
-  const { theme } = configStore.config;
+  const { theme } = configStore;
   theme.isSidebarCompact = !theme.isSidebarCompact;
 };
 
 //
 const headerMenu: any = computed(() => {
-  const { theme } = configStore.config;
+  const { theme } = configStore;
   const { routes } = permissionStore;
   if (theme.layout === "mix") {
   }
@@ -29,7 +29,7 @@ function toggleSettingPanel() {
 
   // setConfig('global.showSettingPanel', true)
   // removeConfig('global.showSettingPanel')
-  configStore.config.global.showSettingPanel = true;
+  configStore.global.showSettingPanel = true;
 }
 
 console.log(headerMenu.value);
