@@ -1,7 +1,7 @@
 import { type Router, type RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 import LoginView from "@/pages/login/index.vue";
 import ExceptionView from "@/pages/exception/404.vue";
-import GridView from "@/pages/grid/index.vue";
+// import GridView from "@/pages/grid/index.vue";
 import { useConfigStore } from "@/store";
 
 const constantRoutes: RouteRecordRaw[] = [
@@ -10,11 +10,11 @@ const constantRoutes: RouteRecordRaw[] = [
     name: "Login",
     component: LoginView,
   },
-  {
-    path: "/grid",
-    name: "layout-grid",
-    component: GridView,
-  },
+  // {
+  //   path: "/grid",
+  //   name: "layout-grid",
+  //   component: GridView,
+  // },
   {
     path: "/",
     name: "Root",

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { GridLayout, GridItem } from "vue3-grid-layout-next";
 
 const state = reactive({
@@ -152,4 +152,4 @@ const resizeEvent = (i, newH, newW, newHPx, newWPx) => {
   box-sizing: border-box;
   cursor: pointer;
 }
-</style>
+</style> -->

@@ -41,7 +41,7 @@ const getMenuList = (list: MenuRoute[], basePath?: string): ListItemType[] => {
 const menuList = computed(() => {
   const { navData } = props;
   return getMenuList(navData);
-});
+}) as any;
 const menuIcon = (item: ListItemType) => {
   if (typeof item.icon === "string") return <t-icon name={item.icon} />;
   const RenderIcon = item.icon;
