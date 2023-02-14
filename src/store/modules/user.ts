@@ -1,4 +1,4 @@
-import { useConfigStore } from "@/store";
+// import { useConfigStore } from "@/store";
 
 interface State {
   token: string;
@@ -38,7 +38,7 @@ export const useUserStore = defineStore("user", () => {
   }
 
   // 过滤权限
-  async function filterRoles() {}
+  // async function filterRoles() {}
 
   return {
     ...toRefs(state),

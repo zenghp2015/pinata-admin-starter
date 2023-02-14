@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MenuItem from "./menu-item.vue";
+// import MenuItem from "./menu-item.vue";
 import { useConfigStore, usePermissionStore, useUserStore } from "@/store";
 const configStore = useConfigStore();
 const permissionStore = usePermissionStore();
@@ -12,10 +12,10 @@ const changeCollapsed = () => {
 
 //
 const headerMenu: any = computed(() => {
-  const { theme } = configStore;
+  // const { theme } = configStore;
   const { routes } = permissionStore;
-  if (theme.layout === "mix") {
-  }
+  // if (theme.layout === "mix") {
+  // }
   return routes;
 });
 

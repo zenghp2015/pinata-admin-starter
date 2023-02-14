@@ -1,6 +1,5 @@
 import { createApp } from "vue";
 import config from "./config";
-import tdesign from "tdesign-vue-next";
 import store from "./store";
 import router from "./router";
 import App from "./App.vue";
@@ -12,7 +11,6 @@ import "./permission";
 
 const app = createApp(App);
 app.use(config);
-app.use(tdesign);
 app.use(store);
 app.use(router);
 app.mount("#app");

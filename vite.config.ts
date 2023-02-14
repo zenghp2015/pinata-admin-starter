@@ -7,6 +7,8 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import svgLoader from "vite-svg-loader";
 
+import { TDesignResolver } from "unplugin-vue-components/resolvers";
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -14,6 +16,11 @@ export default defineConfig({
     vueJsx(),
     AutoImport({
       imports: ["vue", "vue-router", "pinia"],
+      resolvers: [
+        TDesignResolver({
+          library: "vue-next",
+        }),
+      ],
       dts: true,
       eslintrc: {
         enabled: true,
@@ -21,6 +28,11 @@ export default defineConfig({
     }),
     Components({
       dirs: ["src/components"],
+      resolvers: [
+        TDesignResolver({
+          library: "vue-next",
+        }),
+      ],
       dts: true,
     }),
     svgLoader(),
