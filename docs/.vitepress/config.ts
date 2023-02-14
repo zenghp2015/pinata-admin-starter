@@ -7,14 +7,37 @@ export default defineConfig({
 
   themeConfig: {
     nav: [
-      { text: '指南', link: '/guide' },
-      { text: '配置', link: '/guide' },
-      { text: '插件', link: '/guide' },
-      { text: '主题', link: '/guide' },
-      { text: '生态系统', link: '/guide' },
-      { text: '开源项目', link: '/guide' },
+      { text: '指南', link: '/guide/' },
+      { text: '配置', link: '/config/' },
+      // { text: '插件', link: '/guide' },
+      // { text: '主题', link: '/guide' },
+      // { text: '生态系统', link: '/guide' },
+      // { text: '开源项目', link: '/guide' },
     ],
-    sidebar: [],
+    sidebar: {
+      '/guide/': [
+        {
+          text: 'Guide',
+          collapsed: false,
+          items: [
+            { text: 'Index', link: '/guide/' },
+            { text: 'One', link: '/guide/one' },
+            { text: 'Two', link: '/guide/two' }
+          ]
+        }
+      ],
+      '/config/': [
+        {
+          text: 'Config',
+          collapsed: false,
+          items: [
+            { text: 'Index', link: '/config/' },
+            { text: 'Three', link: '/config/three' },
+            { text: 'Four', link: '/config/four' }
+          ]
+        }
+      ],
+    },
     editLink: {
       pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
       text: 'Edit this page on GitHub'
