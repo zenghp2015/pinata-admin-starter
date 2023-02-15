@@ -17,23 +17,24 @@ export default defineConfig({
     sidebar: {
       '/guide/': [
         {
-          text: 'Guide',
+          text: '指南',
           collapsed: false,
-          items: [
-            { text: 'Index', link: '/guide/' },
-            { text: 'One', link: '/guide/one' },
-            { text: 'Two', link: '/guide/two' }
-          ]
-        }
+          items: []
+        },
+        { text: '快速开始', link: '/guide/' },
+        { text: '路由和菜单', link: '/guide/one' },
+        { text: '权限控制', link: '/guide/two' },
+        { text: '项目构建', link: '/guide/two' },
+        { text: '项目部署', link: '/guide/two' },
+        { text: '个性化配置', link: '/guide/two' },
       ],
       '/config/': [
         {
-          text: 'Config',
-          collapsed: false,
+          text: '配置',
           items: [
-            { text: 'Index', link: '/config/' },
-            { text: 'Three', link: '/config/three' },
-            { text: 'Four', link: '/config/four' }
+            { text: '配置1', link: '/config/' },
+            { text: '配置2', link: '/config/three' },
+            { text: '配置3', link: '/config/four' }
           ]
         }
       ],
